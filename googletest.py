@@ -34,19 +34,19 @@ if __name__=='__main__':
     word_set_list = word_set_input(word_set_input_path)
     #print(word_set_list)
 
-    crawler = GoogleCrawler(path = './chromedriver',
+    crawler = GoogleCrawler(path = './chromedriver_linux',
         word_set=word_set_list,
         date_min='1/1/2019',
         date_max='12/31/2019',
         page_limit=5)
     temp = enum_test(search_word_list)
-    for current_keyword in temp:
-        crawler.go_crawl(current_keyword)
+    '''for current_keyword in temp:
+        crawler.go_crawl(current_keyword)'''
 
     
     #print(temp)
-    '''pool = Pool(processes=1)
-    pool.map(crawler.go_crawl,temp,chunksize=1)'''
+    pool = Pool(processes=2)
+    pool.map(crawler.go_crawl,temp,chunksize=1)
 
     #pool = Pool(processes=1)
     #temp_keyword = [("'india' PPP ADB",-1)]#,('beta',1),('caesar',2),('double',3)]

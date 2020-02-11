@@ -79,8 +79,9 @@ class GoogleCrawler:
         return count'''
 
     def csv_out(self,keyword,title,link,count):
+        directory = 'google-drive/2020_WB Project/crawl_result_country_bank/'
         count_str = ''.join(str(e) for e in count)
-        with open(keyword+'.csv','a',newline='', encoding='utf-8-sig') as csvfile:
+        with open(directory+keyword+'.csv','a',newline='', encoding='utf-8-sig') as csvfile:
             out_writer = csv.writer(csvfile)
             out_writer.writerow([title,link,count_str])
 
@@ -125,6 +126,7 @@ class GoogleCrawler:
             for article_count in range(len(titles)):
                 word_count = [0,0,0]
                 try:
+                    titles = driver.find_elements_by_xpath("//div[@class='r']/a")
                     title_string = titles[article_count].text.splitlines()[-1]
                 except:
                     title_string = "unknown title"
@@ -133,7 +135,9 @@ class GoogleCrawler:
 
                 try:
                 # handling exception, the crawler must go on
-                    ActionChains(driver).key_down(Keys.COMMAND).click(titles[article_count]).key_up(Keys.COMMAND).perform()
+                    titles = driver.find_elements_by_xpath("//div[@class='r']/a")
+
+                    ActionChains(driver).key_down(Keys.CONTROL).click(titles[article_count]).key_up(Keys.CONTROL).perform()
                     driver.switch_to.window(driver.window_handles[-1])
 
                     element = driver.find_element_by_tag_name('body').text
