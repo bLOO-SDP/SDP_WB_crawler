@@ -45,7 +45,7 @@ if __name__=='__main__':
 
     
     #print(temp)
-    pool = Pool(processes=2)
+    pool = Pool(processes=1)
     pool.map(crawler.go_crawl,temp,chunksize=1)
 
     #pool = Pool(processes=1)
