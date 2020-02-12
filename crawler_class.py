@@ -124,11 +124,14 @@ class GoogleCrawler:
         return count'''
 
     def csv_out(self,keyword,title,link,count):
-        directory = ''#'google-drive/2020_WB Project/crawl_result_country_bank/'
+        directory = ''#'google-drive/2020_WB Project/crawl_result_nounverb/'
+        output = [keyword,title]
+        for i in count:
+            output.append(i)
         count_str = ''.join(str(e)+',' for e in count)
         with open(directory+keyword+'.csv','a',newline='', encoding='utf-8-sig') as csvfile:
             out_writer = csv.writer(csvfile)
-            out_writer.writerow([title,link,count_str])
+            out_writer.writerow(output)
 
     def go_crawl(self,search_keyword):
         #nltk.download('stopwords') 
