@@ -5,6 +5,10 @@ from selenium.webdriver.common.action_chains import ActionChains
 import time
 from multiprocessing import Pool
 import csv
+import re
+from collections import Counter
+import spacy
+from spacy.matcher import PhraseMatcher
 #from bert_serving.client import BertClient
 #from sklearn.metrics.pairwise import cosine_similarity
 #from nltk.corpus import stopwords
@@ -18,6 +22,13 @@ class GoogleCrawler:
         self.date_min = date_min
         self.date_max = date_max
         self.page_limit = page_limit
+
+        # to init
+        self.nlp = spacy.load('en_core_web_sm-2.2.5')
+        self.phrase_matcher = PhraseMatcher(self.nlp.vocab)
+        #word_set = ['machine learning', 'robots', 'intelligent agents']
+        self.patterns = [self.nlp(text) for text in word_set]
+        self.phrase_matcher.add('hama', None, *(self.patterns))
 
     def date_limit(self,driver):
         # select date option
@@ -47,7 +58,41 @@ class GoogleCrawler:
 
         time.sleep(1)
     
-    #one to one word comparison, the possibility of replacement exists.
+    # new!
+    def word_searcher(self,document):
+        # function body
+        processed_document = document.lower()  
+        processed_document = re.sub('[^a-zA-Z]', ' ', processed_document ) 
+        processed_document = re.sub(r'\s+', ' ', processed_document)
+        sentence = self.nlp(processed_document)
+        matched_phrases = self.phrase_matcher(sentence)
+
+        word_list = []
+
+        for match_id, start, end in matched_phrases:
+            span = sentence[start:end]                   
+            word_list.append(span.text)
+            #print(match_id, string_id, start, end, span.text)
+
+        #print("---Counter()---")
+        result = Counter(word_list)
+        #print(result)
+
+        count = []
+        for key in self.word_set:
+            count.append(result[key])
+
+        res = sorted(result.items(),key=(lambda x:x[1]),reverse = True)
+
+        resres = []
+        for i in res:
+            resres.append(str(i[0])+' '+str(i[1]))
+
+        return count,resres
+        #print(count)
+        #print(resres)
+
+    '''#one to one word comparison, the possibility of replacement exists.
     def word_searcher(self,document):
         count = [x*0 for x in range(len(self.word_set))]
         document_word_list = document.split(' ')
@@ -57,7 +102,7 @@ class GoogleCrawler:
                 if doc_word == word:
                     count[i] = count[i]+1
         
-        return count
+        return count'''
 
     '''def word_searcher(self, document):
     
@@ -79,8 +124,8 @@ class GoogleCrawler:
         return count'''
 
     def csv_out(self,keyword,title,link,count):
-        directory = 'google-drive/2020_WB Project/crawl_result_country_bank/'
-        count_str = ''.join(str(e) for e in count)
+        directory = ''#'google-drive/2020_WB Project/crawl_result_country_bank/'
+        count_str = ''.join(str(e)+',' for e in count)
         with open(directory+keyword+'.csv','a',newline='', encoding='utf-8-sig') as csvfile:
             out_writer = csv.writer(csvfile)
             out_writer.writerow([title,link,count_str])
@@ -145,8 +190,9 @@ class GoogleCrawler:
                     #print(element) ####### for demo
                     driver.implicitly_wait(5) ####### for demo
                     print("no error until word_searcher")
-                    word_count = self.word_searcher(element)
-                    print(word_count)
+                    word_count,word_list = self.word_searcher(element)
+                    print(word_list)
+                    #print(word_count)
                     print('search:',search_count)
                     print('article:',article_count)
                 except:
@@ -159,12 +205,12 @@ class GoogleCrawler:
                         word_count[i] = 1
 
                 print(word_count)
-                if sum(word_count)>4:
+                if sum(word_count)>1:
                     link_list.append(link_url)
                     count_list.append(word_count)
                     ############################################
                     #link saving function required
-                    self.csv_out(search_keyword[1],title_string,link_url,word_count)
+                    self.csv_out(search_keyword[1],title_string,link_url,word_list)
                     ############################################
                     driver.switch_to.window(google_page)
                 else:

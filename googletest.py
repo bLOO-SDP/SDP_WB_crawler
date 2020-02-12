@@ -34,7 +34,7 @@ if __name__=='__main__':
     word_set_list = word_set_input(word_set_input_path)
     #print(word_set_list)
 
-    crawler = GoogleCrawler(path = './chromedriver_linux',
+    crawler = GoogleCrawler(path = './chromedriver',
         word_set=word_set_list,
         date_min='1/1/2019',
         date_max='12/31/2019',

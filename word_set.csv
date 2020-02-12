@@ -1,125 +1,133 @@
-﻿energy,,,
-ICT, , ,
-transport,,,
-water,,,
-sewage,,,
-solid,, ,
-distribution,,,
-electricity,,,
-transmission,,,
-distribution,,,
-pipelines,,,
-gas,,,
-plant ,,,
-cable ,,,
-satellite,,,
-transmission,,,
-telecommunication,,,
-fiber,,,
-port ,,,
-railways,,,
-road,,,
-bypass,,,
-terminal,,,
-tunnel,,,
-highway,,,
-express,,,
-hub,,,
-treatment,,,
-water,,,
-collection,,,
-facilities,,,
-supply,,,
-sanitation,,,
-utility,,,
-recycling,,,
-sorting,,,
-transport,,,
-Energy,,,
-Incineration,,,
-Sanitary,,,
-Integrated,,,
-transportation,,,
-Municipal,,,
-service,,,
-city,,,
-disposal,,,
-Investment,,,
-Contract,,,
-Lease,,,
-Private,,,
-participation,,,
-Divestiture,,,
-Project,,,
-Merchant,,,
-Rental ,,,
-connections,,,
-Throughput,,,
-Population,,,
-private  ,,,
-construction,,,
-sponsor,,,
-ownership,,,
-Percentage,,,
-funding,,,
-providers,,,
-government,,,
-support ,,,
-Equity,,,
-Guarantees,,,
-loan,,,
-Quasi-equity,,,
-Risk,,,
-Sydication,,,
-DEFI,,,
-banks ,,,
-project,,,
-Brownfield,,,
-Greenfield,,,
-BOO,,,
-BLT,,,
-BOT,,,
-rehabilitate,,,
-Build,,,
-operate,,,
-subsidy ,,,
-Rehabilitate,,,
-transfer,,,
-merchant ,,,
-contract ,,,
-public, ,,
-guarantee,,,
-debt  ,,,
-In-kind,,,
-granting,,,
-payment,,,
-Revenue ,,,
-Exchange,,,
-cost,,,
-Interest,,,
-rate,,,
-Tariff ,,,
-tax ,,,
-credit,,,
-SOE,,,
-JV,,,
-International,,,
-Holding,,,
-Proprietary,,,
-Limited,,, 
-COD,,,
-Bilateral ,,,
-Multilateral,,,
-Consortium,,,
-Syndicate,,,
-Disclaimer,,,
-Disclosure,,,
-landfill,,,
-waste,,,
-line,,,
-infastructure,,,
-communication,,,
-optic ,,,
-way,,,
-potable,,,
-system,,,
+﻿energy
+ICT
+transport
+water
+sewage
+distribution
+electricity
+transmission
+distribution
+pipelines
+gas
+plant 
+cable 
+satellite
+transmission line
+telecommunication
+fiber optic communication
+port 
+railways
+road
+bypass
+terminal
+tunnel
+highway
+express way
+hub
+sewerage
+potable
+system
+treatment
+supply
+sanitation
+water utility
+solid waste
+sorting and recycling
+transport
+sanitary
+Incineration
+landfill
+municipal
+waste
+management
+collection
+disposal
+corporacion
+corporation
+fund
+agence
+banco
+agency
+bank
+government
+platform
+bancomext
+mitsubishi
+sberbank
+bankasi
+reconstruction
+rizal
+vietcombank
+investment
+Kreditanstalt
+Bayern LB
+Gazprom
+Development Bank
+Natixis
+Investitions
+Développement 
+ICBC
+HDFC
+BDO
+Caribank
+OCBC
+GGF
+Vnesheconombank
+Rabobank
+Swedfund
+HSBC
+Meezan Bank
+Standard Chartered
+Proparco
+Credit Agricole
+ING
+OPEC
+Sumitomo
+ADB
+AfDB
+IAB
+IADB
+CDB
+IFC
+CABEI
+BOAD
+EBRD
+CDC
+RCBC
+OPIC
+KfW
+GCF
+LEAP
+DBP
+GIEK
+FMO
+SJIBL
+CDB
+CAF
+BOP
+DBSA
+MIGA
+DEG
+BBVA
+EADB
+AIIB
+AFD
+SMBC
+CESCE
+SABINCO
+NDF
+JBIC
+Finnfund
+LEAP
+ADFD
+BSTDB
+BIO
+ICO
+OFID
+EAIF
+EDCF
+IIC
+IsDB
+AFC
+ICDF
+BMCE
