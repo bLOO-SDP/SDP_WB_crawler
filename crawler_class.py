@@ -43,18 +43,19 @@ class GoogleCrawler:
 
         time.sleep(0.5)
 
-        date_option = driver.find_element_by_id("cdr_opt")
+        date_option = driver.find_element_by_id("cdrlnk")
+        #date_option = driver.find_element_by_link_text("기간 설정...")
         date_option.click()
 
         time.sleep(0.5)
 
         # input date min and max
-        date_min_input = driver.find_elements_by_xpath("//*[@class='ktf mini cdr_mm cdr_min']")
-        date_min_input[1].send_keys(self.date_min)
-        date_max_input = driver.find_elements_by_xpath("//*[@class='ktf mini cdr_mm cdr_max']")
-        date_max_input[1].send_keys(self.date_max)
-        date_enter = driver.find_elements_by_xpath("//*[@class='ksb mini cdr_go']")
-        date_enter[1].click()
+        date_min_input = driver.find_elements_by_xpath("//*[@class='OouJcb ktf mini']")
+        date_min_input[0].send_keys(self.date_min)
+        date_max_input = driver.find_elements_by_xpath("//*[@class='rzG2be ktf mini']")
+        date_max_input[0].send_keys(self.date_max)
+        date_enter = driver.find_elements_by_xpath("//*[@class='Ru1Ao ksb mini']")
+        date_enter[0].click()
 
         time.sleep(1)
     
@@ -125,10 +126,10 @@ class GoogleCrawler:
 
     def csv_out(self,keyword,title,link,count):
         directory = ''#'google-drive/2020_WB Project/crawl_result_nounverb/'
-        output = [keyword,title]
+        output = [keyword,title,link]
         for i in count:
             output.append(i)
-        count_str = ''.join(str(e)+',' for e in count)
+        #count_str = ''.join(str(e)+',' for e in count)
         with open(directory+keyword+'.csv','a',newline='', encoding='utf-8-sig') as csvfile:
             out_writer = csv.writer(csvfile)
             out_writer.writerow(output)
@@ -185,7 +186,7 @@ class GoogleCrawler:
                 # handling exception, the crawler must go on
                     titles = driver.find_elements_by_xpath("//div[@class='r']/a")
 
-                    ActionChains(driver).key_down(Keys.CONTROL).click(titles[article_count]).key_up(Keys.CONTROL).perform()
+                    ActionChains(driver).key_down(Keys.COMMAND).click(titles[article_count]).key_up(Keys.COMMAND).perform()
                     driver.switch_to.window(driver.window_handles[-1])
 
                     element = driver.find_element_by_tag_name('body').text
